@@ -1,0 +1,2 @@
+ export 'package:mcvm_movie/domain/entities/movie.dart';
+
