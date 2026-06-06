@@ -9,13 +9,20 @@ class MoviesSlideshow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = Theme.of(context).colorScheme;
-    return  movies.SizedBox(
-      height:210,
+    return SizedBox(
+      height: 210,
       width: double.infinity,
       child: Swiper(
         itemCount: movies.length,
-        itemBuilder:(context, index)
+        itemBuilder: (context, index) {
+          final movie = movies[index];
+
+          return Card(
+            child: Center(
+              child: Text(movie.title),
+            ),
+          );
+        },
       ),
     );
   }
