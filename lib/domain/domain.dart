@@ -1,2 +1,1 @@
- export 'package:mcvm_movie/domain/entities/movie.dart';
-
+export 'package:cjge_movies_app/domain/entities/movie.dart';
