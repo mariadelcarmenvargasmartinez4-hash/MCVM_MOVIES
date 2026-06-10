@@ -1,30 +1,32 @@
 import 'package:flutter/material.dart';
 
-class CustomAppBar extends StatelessWidget{
+class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
 
-    final colors =Theme.of(context).colorScheme;
-    final textStyle = Theme.of(context).textTheme.titleMedium;
+    final colors = Theme.of(context).colorScheme;
+    final tittleStyle = Theme.of(context).textTheme.titleMedium;
+
 
     return SafeArea(
-       bottom: false,
-       left: false,
-       child:Padding(
-        padding: EdgeInsetsGeometry.symmetric(horizontal: 20),
-        child: Row(
-          children: [
-           Icon(Icons.movie_outlined),
-           SizedBox(width: 5),
-            Text('Peliculas TMDB', style: textStyle,),
+      bottom: false,
+      left: false,
+      child: Padding(
+        padding: EdgeInsetsGeometry.symmetric(horizontal: 10),
+        child: SizedBox(
+          width: double.infinity,
+          child: Row(children: [
+            Icon(Icons.movie_outlined, color: colors.primary),
+            SizedBox(width: 5),
+            Text('Películas TMDB', style: tittleStyle),
             Spacer(),
             IconButton(
-              icon: Icon(Icons.search),
-              onPressed: (){},
-            ),
-          ],
+              onPressed: () {},
+              icon: Icon(Icons.search, color: colors.primary),
+            )
+          ]),
         ),
       ),
     );

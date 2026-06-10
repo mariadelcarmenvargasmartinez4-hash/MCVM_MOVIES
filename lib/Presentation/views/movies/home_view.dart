@@ -1,5 +1,5 @@
+import 'package:mcvm_movie/presentation/widgets/widget.dart';
 import 'package:flutter/material.dart';
-import 'package:mcvm_movie/Presentation/widgets/widgets.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -7,7 +7,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
-      slivers:[
+      slivers: [
         SliverAppBar(
           floating: true,
           flexibleSpace: FlexibleSpaceBar(
@@ -15,22 +15,21 @@ class HomeView extends StatelessWidget {
             title: CustomAppBar(),
           ),
         ),
+
         SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (context, index) {
-              return Column(
-                children: [
-                   Text ('data'),
-                   Text ('data'),
-                    Text ('data'),
-                    Text ('data'),
-                    Text ('data'),
-                ],
-              );
-            },
-            childCount: 100,
-          ),
-        ),
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                return Column(
+                  children: [
+                    MoviesSlideshow(movies: []),
+                    Text('data'),
+                  ],
+                );
+              },
+              childCount: 1,
+            ),
+          )
+
       ]
     );
   }
