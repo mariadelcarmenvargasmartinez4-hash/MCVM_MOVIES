@@ -1,1 +1,0 @@
-export 'package:mcvm_movie/presentation/views/movies/home_view.dart';

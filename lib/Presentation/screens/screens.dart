@@ -1,1 +1,0 @@
-export 'package:mcvm_movie/presentation/screens/movies/home_screen.dart';
