@@ -1,1 +1,2 @@
-export 'package:cjge_movies_app/presentation/screens/movies/home_screen.dart';
+export 'package:mcvm_movie/presentation/screens/movies/home_screen.dart';
+
