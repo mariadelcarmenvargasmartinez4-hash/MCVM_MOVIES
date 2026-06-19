@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mcvm_movie/presentation/providers/movies/movie_info_provider.dart';
 
-
 class MovieScreen extends ConsumerStatefulWidget {
   static const name = 'movie-screen';
 
