@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:mcvm_movie/domain/domain.dart';
-import 'package:mcvm_movie/presentation/providers/providers.dart';
+import 'package:mcvm_movie/Presentation/providers/providers.dart';
 
 
 final movieInfoProvider = StateNotifierProvider<MovieMapNotifier, Map<String, Movie>>((ref) {

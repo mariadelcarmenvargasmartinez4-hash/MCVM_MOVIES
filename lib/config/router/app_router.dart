@@ -1,6 +1,6 @@
 import 'package:go_router/go_router.dart';
-import 'package:mcvm_movie/presentation/screens/screens.dart';
-import 'package:mcvm_movie/presentation/screens/movies/home_screen.dart';
+import 'package:mcvm_movie/Presentation/screens/screens.dart';
+//import 'package:mcvm_movie/Presentation/screens/movies/home_screen.dart';
 
 final appRouter = GoRouter(
   initialLocation: '/home/0',
@@ -9,8 +9,11 @@ final appRouter = GoRouter(
       path: '/home/:page',
       builder: (context, state) {
         final pageIndex = int.parse(state.pathParameters['page'] ?? '0');
+        if (pageIndex < 0) {
+          return const HomeScreen();
+        }
 
-        return HomeScreen();
+        return const HomeScreen();
       },
       routes: [
         GoRoute(

@@ -1,5 +1,6 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mcvm_movie/domain/domain.dart';
 import 'package:animate_do/animate_do.dart';
 
@@ -66,7 +67,9 @@ class _Slide extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: GestureDetector(
-            onTap: () {},
+            onTap: () {
+              context.push('/home/0/movie/${movie.id}');
+            },
             child: Image.network(
               movie.backdropPath,
               fit: BoxFit.cover,

@@ -1,35 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mcvm_movie/presentation/providers/movies/movie_info_provider.dart';
+//import 'package:flutter_riverpod/flutter_riverpod.dart';
+//import 'package:mcvm_movie/presentation/providers/movies/movie_info_provider.dart';
+import 'package:mcvm_movie/Presentation/views/movies/home_view.dart';
 
-
-class MovieScreen extends ConsumerStatefulWidget {
-  static const name = 'movie-screen';
-
-  final String movieId;
-  const MovieScreen({
-    super.key,
-    required this.movieId
-  });
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  ConsumerState<MovieScreen> createState() => _MovieScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _MovieScreenState extends ConsumerState<MovieScreen> {
-
-  @override
-  void initState() {
-    super.initState();
-    
-    ref.read(movieInfoProvider.notifier).loadMovie(widget.movieId);
-  }
-
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Placeholder(),
+      body: HomeView(),
     );
   }
 }

@@ -33,23 +33,33 @@ class MovieDbDetail {
         required this.voteCount,
     });
 
-    factory MovieDbDetail.fromJson(Map<String, dynamic> json) => MovieDbDetail(
-        adult: json["adult"],
+    factory MovieDbDetail.fromJson(Map<String, dynamic> json) {
+      final genres = json['genres'] as List<dynamic>?;
+      final parsedGenres = genres
+          ?.map((genre) => genre is Map ? genre['name']?.toString() ?? '' : genre.toString())
+          .where((name) => name.isNotEmpty)
+          .toList() ?? <String>[];
+
+      return MovieDbDetail(
+        adult: json["adult"] ?? false,
         backdropPath: json["backdrop_path"] ?? "https://di-sitebuilder-assets.dealerinspire.com/generic-placeholder.png",
-        genreIds: List<String>.from(json["genres"].map((x) => x)),
-        id: json["id"],
-        title: json["title"],
-        originalLanguage: json["original_language"],
-        originalTitle: json["original_title"],
-        overview: json["overview"],
-        popularity: json["popularity"]?.toDouble(),
-        posterPath: json["poster_path"],
-        releaseDate: DateTime.parse(json["release_date"]),
-        softcore: json["softcore"],
-        video: json["video"],
-        voteAverage: json["vote_average"]?.toDouble(),
-        voteCount: json["vote_count"],
-    );
+        genreIds: parsedGenres,
+        id: json["id"] ?? 0,
+        title: json["title"] ?? '',
+        originalLanguage: json["original_language"] ?? '',
+        originalTitle: json["original_title"] ?? '',
+        overview: json["overview"] ?? '',
+        popularity: (json["popularity"] ?? 0).toDouble(),
+        posterPath: json["poster_path"] ?? '',
+        releaseDate: json["release_date"] != null && json["release_date"] != ''
+            ? DateTime.parse(json["release_date"])
+            : DateTime.now(),
+        softcore: json["softcore"] ?? false,
+        video: json["video"] ?? false,
+        voteAverage: (json["vote_average"] ?? 0).toDouble(),
+        voteCount: json["vote_count"] ?? 0,
+      );
+    }
 
     Map<String, dynamic> toJson() => {
         "adult": adult,
