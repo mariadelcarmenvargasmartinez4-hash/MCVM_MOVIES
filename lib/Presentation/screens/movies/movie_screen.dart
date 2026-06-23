@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mcvm_movie/Presentation/providers/movies/movie_info_provider.dart';
+import 'package:mcvm_movie/Presentation/widgets/movies/movie_ganres.dart';
+import 'package:mcvm_movie/Presentation/widgets/movies/movie_rating.dart';
 
 class MovieScreen extends ConsumerStatefulWidget {
   static const name = 'movie-screen';
@@ -159,13 +161,9 @@ class _MovieScreenState extends ConsumerState<MovieScreen> {
                     ],
                   ),
                   const SizedBox(height: 18),
-                  Text(
-                    '⭐ ${movie.voteAverage.toStringAsFixed(1)}',
-                    style: textTheme.bodyMedium?.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
+                  MovieRating(voteAverage: movie.voteAverage),
+                  const SizedBox(height: 12),
+                  MovieGenres(movie: movie),
                 ],
               ),
             ),
