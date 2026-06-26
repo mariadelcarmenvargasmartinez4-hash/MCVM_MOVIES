@@ -1,3 +1,8 @@
+export 'package:mcvm_movie/infrastructure/models/moviedb/moviedb_response.dart';
 export 'package:mcvm_movie/infrastructure/datasource/moviedb_datasource_impl.dart';
 export 'package:mcvm_movie/infrastructure/repositories/movie_repository_impl.dart';
-
+export 'package:mcvm_movie/infrastructure/repositories/actors_repository_impl.dart';
+export 'package:mcvm_movie/infrastructure/mappers/movie_mapper.dart';
+export 'package:mcvm_movie/infrastructure/mappers/actor_mapper.dart';
+export 'package:mcvm_movie/infrastructure/models/moviedb/moviedb_detail.dart';  
+export 'package:mcvm_movie/infrastructure/models/moviedb/moviedb_credits.dart';

@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mcvm_movie/Presentation/providers/movies/movie_info_provider.dart';
+import 'package:mcvm_movie/Presentation/providers/actors/actors_by_movie_provider.dart';
 import 'package:mcvm_movie/Presentation/widgets/movies/movie_ganres.dart';
 import 'package:mcvm_movie/Presentation/widgets/movies/movie_rating.dart';
+import 'package:mcvm_movie/Presentation/widgets/movies/actors_list_widget.dart';
 
 class MovieScreen extends ConsumerStatefulWidget {
   static const name = 'movie-screen';
@@ -25,12 +27,15 @@ class _MovieScreenState extends ConsumerState<MovieScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       ref.read(movieInfoProvider.notifier).loadMovie(widget.movieId);
+      ref.read(actorsByMovieProvider.notifier).loadActors(widget.movieId);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     final movie = ref.watch(movieInfoProvider)[widget.movieId];
+    final actorsMap = ref.watch(actorsByMovieProvider);
+    final actors = actorsMap[widget.movieId] ?? [];
 
     if (movie == null) {
       return const Scaffold(
@@ -71,6 +76,30 @@ class _MovieScreenState extends ConsumerState<MovieScreen> {
                         Color.fromRGBO(0, 0, 0, 0.65),
                         Color.fromRGBO(0, 0, 0, 0.94),
                       ],
+                    ),
+                  ),
+                ),
+                Positioned.fill(
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: Text(
+                        movie.title,
+                        textAlign: TextAlign.center,
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        style: textTheme.displaySmall?.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          shadows: const [
+                            Shadow(
+                              blurRadius: 10,
+                              color: Colors.black54,
+                              offset: Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -131,39 +160,44 @@ class _MovieScreenState extends ConsumerState<MovieScreen> {
                           children: [
                             Text(
                               movie.title,
-                              style: textTheme.headlineSmall?.copyWith(
+                              style: textTheme.titleLarge?.copyWith(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                               ),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
                             ),
-                            const SizedBox(height: 8),
+                            const SizedBox(height: 10),
                             Text(
                               movie.overview.isEmpty
                                   ? 'Sin descripción disponible.'
                                   : movie.overview,
-                              style: textTheme.bodyLarge?.copyWith(
+                              style: textTheme.bodyMedium?.copyWith(
                                 color: Colors.white,
                                 height: 1.5,
                               ),
                               maxLines: 6,
                               overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.justify,
                             ),
-                            const SizedBox(height: 8),
+                            const SizedBox(height: 12),
+                            MovieRating(voteAverage: movie.voteAverage),
+                            const SizedBox(height: 12),
                             Text(
                               'Fecha de estreno: ${movie.releaseDate.day}/${movie.releaseDate.month}/${movie.releaseDate.year}',
                               style: textTheme.bodyMedium?.copyWith(
                                 color: Colors.white70,
                               ),
                             ),
+                            const SizedBox(height: 12),
+                            MovieGenres(movie: movie),
                           ],
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 18),
-                  MovieRating(voteAverage: movie.voteAverage),
-                  const SizedBox(height: 12),
-                  MovieGenres(movie: movie),
+                  const SizedBox(height: 24),
+                  ActorsListWidget(actors: actors),
                 ],
               ),
             ),

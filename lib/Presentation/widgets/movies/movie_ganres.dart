@@ -13,7 +13,7 @@ class MovieGenres extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsetsGeometry.all(0),
+      padding:  EdgeInsetsGeometry.all(10),
       child: SizedBox(
         width: double.infinity,
         child: Wrap(
