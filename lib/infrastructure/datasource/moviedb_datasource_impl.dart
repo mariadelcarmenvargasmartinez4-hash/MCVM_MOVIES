@@ -3,9 +3,11 @@ import 'package:mcvm_movie/domain/domain.dart';
 import 'package:dio/dio.dart';
 import 'package:mcvm_movie/infrastructure/mappers/movie_mapper.dart';
 import 'package:mcvm_movie/infrastructure/mappers/actor_mapper.dart';
+import 'package:mcvm_movie/infrastructure/mappers/video_mapper.dart';
 import 'package:mcvm_movie/infrastructure/models/moviedb/moviedb_response.dart';
 import 'package:mcvm_movie/infrastructure/models/moviedb/moviedb_detail.dart';
 import 'package:mcvm_movie/infrastructure/models/moviedb/moviedb_credits.dart';
+import 'package:mcvm_movie/infrastructure/models/moviedb/moviedb_videos_response.dart';
 
 class MoviedbDatasourceImpl extends MoviesDatasource {
   
@@ -85,11 +87,16 @@ class MoviedbDatasourceImpl extends MoviesDatasource {
   }
 
   @override
-  Future<List<Movie>> getYoutubeVideoById(String movieId) async {
-    final response = await dio.get('/movie/$movieId');
-    final detail = MovieDbDetail.fromJson(response.data);
-    final movie = MovieMapper.movieDetailToEntity(detail);
-    return [movie];
+  Future<List<Video>> getYoutubeVideoById(String movieId) async {
+    final response = await dio.get('/movie/$movieId/videos');
+    final videoResponse = MovieDbVideosResponse.fromJson(response.data);
+    final videos = <Video>[];
+    for (final video in videoResponse.results) {
+      if (video.site == 'YouTube') {
+        videos.add(VideoMapper.movieDbVideoToEntity(video));
+      }
+    }
+    return videos;
   }
 
   @override

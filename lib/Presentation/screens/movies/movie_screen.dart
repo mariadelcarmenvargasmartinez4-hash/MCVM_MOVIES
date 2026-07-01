@@ -6,6 +6,7 @@ import 'package:mcvm_movie/Presentation/providers/actors/actors_by_movie_provide
 import 'package:mcvm_movie/Presentation/widgets/movies/movie_ganres.dart';
 import 'package:mcvm_movie/Presentation/widgets/movies/movie_rating.dart';
 import 'package:mcvm_movie/Presentation/widgets/movies/actors_list_widget.dart';
+import 'package:mcvm_movie/Presentation/widgets/movies/videso_from_movie.dart';
 
 class MovieScreen extends ConsumerStatefulWidget {
   static const name = 'movie-screen';
@@ -198,6 +199,8 @@ class _MovieScreenState extends ConsumerState<MovieScreen> {
                   ),
                   const SizedBox(height: 24),
                   ActorsListWidget(actors: actors),
+                  const SizedBox(height: 24),
+                  VideosFromMovie(movieId: widget.movieId),
                 ],
               ),
             ),

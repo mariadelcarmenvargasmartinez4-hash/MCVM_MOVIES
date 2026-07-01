@@ -6,3 +6,4 @@ export 'package:mcvm_movie/infrastructure/mappers/movie_mapper.dart';
 export 'package:mcvm_movie/infrastructure/mappers/actor_mapper.dart';
 export 'package:mcvm_movie/infrastructure/models/moviedb/moviedb_detail.dart';  
 export 'package:mcvm_movie/infrastructure/models/moviedb/moviedb_credits.dart';
+export 'package:mcvm_movie/infrastructure/models/moviedb/moviedb_videos_response.dart';

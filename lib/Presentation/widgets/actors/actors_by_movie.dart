@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mcvm_movie/Presentation/providers/actors/actors_by_movie_provider.dart';
 
+// Widget that displays a list of actors for a given movie
 class ActorsByMovieWidget extends ConsumerWidget {
   final String movieId;
 
