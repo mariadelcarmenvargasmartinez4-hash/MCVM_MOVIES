@@ -11,7 +11,7 @@ class HomeView extends ConsumerStatefulWidget {
   ConsumerState<HomeView> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends ConsumerState<HomeView> {
+class _HomeViewState extends ConsumerState<HomeView>  with AutomaticKeepAliveClientMixin {
   @override
   void initState() {
     super.initState();
@@ -27,6 +27,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final movies = ref.watch(nowPlayingMoviesProvider);
 
     return CustomScrollView(
@@ -60,4 +61,6 @@ class _HomeViewState extends ConsumerState<HomeView> {
       ],
     );
   }
+  @override
+  bool get wantKeepAlive => true;
 }

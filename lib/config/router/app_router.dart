@@ -10,10 +10,10 @@ final appRouter = GoRouter(
       builder: (context, state) {
         final pageIndex = int.parse(state.pathParameters['page'] ?? '0');
         if (pageIndex < 0) {
-          return const HomeScreen();
+          return const HomeScreen(pageIndex: 0);
         }
 
-        return const HomeScreen();
+        return HomeScreen(pageIndex: pageIndex);
       },
       routes: [
         GoRoute(

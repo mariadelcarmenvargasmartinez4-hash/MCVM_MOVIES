@@ -2,7 +2,6 @@
 //
 //     final movieDbVideosResponse = movieDbVideosResponseFromJson(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 MovieDbVideosResponse movieDbVideosResponseFromJson(String str) => MovieDbVideosResponse.fromJson(json.decode(str));

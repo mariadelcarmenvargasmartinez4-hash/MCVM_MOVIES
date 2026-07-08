@@ -4,3 +4,4 @@ export 'package:mcvm_movie/Presentation/widgets/shared/custom_appbar.dart';
 export 'package:mcvm_movie/Presentation/widgets/movies/movie_rating.dart';
 export 'package:mcvm_movie/Presentation/widgets/movies/movie_ganres.dart';
 export 'package:mcvm_movie/Presentation/widgets/actors/actors_by_movie.dart';
+export 'package:mcvm_movie/Presentation/widgets/shared/custom_botton_navigetion.dart';

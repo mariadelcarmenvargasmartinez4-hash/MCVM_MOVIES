@@ -25,7 +25,7 @@ class VideosFromMovie extends ConsumerWidget {
 
         final controller = YoutubePlayerController.fromVideoId(
           videoId: trailer.youtubeKey,
-          autoPlay: false,
+          autoPlay: true,
           params: const YoutubePlayerParams(
             mute: false,
             showControls: true,
