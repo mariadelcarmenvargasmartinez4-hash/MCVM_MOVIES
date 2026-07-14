@@ -8,8 +8,6 @@ void main() async{
   
   await dotenv.load(fileName: '.env');
 
-  print(dotenv.env["MOVIEDB_KEY"]);
-
   runApp(
     ProviderScope(child: const MainApp(),
     )

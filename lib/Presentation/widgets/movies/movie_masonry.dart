@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mcvm_movie/domain/domain.dart';
 
 class MovieMasonry extends StatefulWidget {
@@ -53,32 +54,37 @@ class _MovieMasonryState extends State<MovieMasonry> with AutomaticKeepAliveClie
         itemCount: widget.movie.length,
         itemBuilder: (context, index) {
           final movie = widget.movie[index];
-          return ClipRRect(
+          return InkWell(
+            onTap: () => context.push('/home/0/movie/${movie.id}'),
             borderRadius: BorderRadius.circular(12),
-            child: Column(
-              children: [
-                AspectRatio(
-                  aspectRatio: 0.70,
-                  child: Image.network(
-                    movie.posterPath,
-                    fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => Container(
-                      color: Colors.grey[800],
-                      child: const Center(
-                        child: Icon(Icons.image_not_supported, color: Colors.white),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  AspectRatio(
+                    aspectRatio: 0.70,
+                    child: Image.network(
+                      movie.posterPath,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) => Container(
+                        color: Colors.grey[800],
+                        child: const Center(
+                          child: Icon(Icons.image_not_supported, color: Colors.white),
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 6),
-                Text(
-                  movie.title,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(fontSize: 11),
-                  textAlign: TextAlign.center,
-                ),
-              ],
+                  const SizedBox(height: 6),
+                  Text(
+                    movie.title,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontSize: 11),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
             ),
           );
         },
